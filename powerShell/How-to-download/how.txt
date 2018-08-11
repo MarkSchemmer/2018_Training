@@ -1,0 +1,13 @@
+Invoke-WebRequest $url -Outfile $path
+
+$url = 'https://stubdownloader.cdn.mozilla.net/builds/firefox-stub/en-US/win/60fffe0e902a5d318a0c3d6f105459211da0709d881135ccea74c979465d29a2/Firefox%20Installer.exe'
+
+$path = 'C:\Users\Mark James Schemmer\Desktop\firefoxTest.exe'
+
+Invoke-WebRequest $url -OutFile $path 
+
+# Then run Invoke-Item $path
+
+@"
+    This will be the base for my script later I can make improvements.....
+"@
