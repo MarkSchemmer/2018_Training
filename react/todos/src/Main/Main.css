@@ -1,0 +1,14 @@
+
+
+.card-body{
+    padding:0 !important;
+}
+
+.main-task-maker{
+    margin:0;
+    width:100%;
+    height:100%;
+    padding:10px;
+    font-size:1.6em;
+    border:none;
+}
