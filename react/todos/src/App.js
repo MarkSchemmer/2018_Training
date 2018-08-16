@@ -16,6 +16,8 @@ class App extends React.Component {
       items : [],
     }
     this.addTask = this.addTask.bind(this)
+    this.deleteTask = this.deleteTask.bind(this)
+    this.editTask = this.editTask.bind(this)
   }
 
 
@@ -26,6 +28,21 @@ class App extends React.Component {
     }), () => console.log(this.state.items))
   }
 
+  deleteTask(task){
+    this.setState(prevState => ({
+      items : prevState.items.filter(tsk => tsk !== task)
+    }))
+  }
+
+  editTask(updatedTask, oldTask){
+      let index = this.state.items.indexOf(oldTask)
+      let newItems = this.state.items.slice()
+      newItems[index] = updatedTask
+      this.setState(prevState => ({
+          items : newItems
+      }))
+  }
+
   render(){
     return (
 
@@ -33,7 +50,8 @@ class App extends React.Component {
         <h1>Mark's Todos Versions...</h1>
             <Main
             {...this.state} 
-            addTask={this.addTask} />
+            addTask={this.addTask} 
+            deleteTask={this.deleteTask} editTask={this.editTask} />
       </div>
     )
   }

@@ -3,8 +3,8 @@ import './footer.css'
 
 const Footer = (props) => {
   const shw = props.show ? (
-    <div className="card-footer text-muted">
-      <span>1 item left</span>
+    <div className="card-footer text-muted" style={{zIndex:'4'}}>
+      <span>{props.items.length} item left</span>
       <button  className="btn btn-primary btn-sm">All</button>
       <button  className="btn btn-primary btn-sm">Active</button>
        <button  className="btn btn-primary btn-sm">Completed</button>

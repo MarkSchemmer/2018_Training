@@ -1,0 +1,13 @@
+.list-group-item {
+    background-color:rgba(0, 0, 0, 0.03) !important;
+    height:65px;
+}
+
+.list-group-item:hover{
+    cursor:pointer;
+}
+
+
+.btn-danger {
+    float:right !important;
+}
