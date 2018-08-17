@@ -8,7 +8,7 @@ class Main extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-                newTask:''
+                newTask:'',
         }
 
 
@@ -26,7 +26,7 @@ class Main extends React.Component {
     }
 
     render(){
-        const {items} = this.props 
+        const {items, deleteTask, editTask} = this.props 
         return (
             <header>
                <div className="card">
@@ -40,11 +40,11 @@ class Main extends React.Component {
                     </div>
                         {items.map(task => 
                         <Task key={task} 
-                        deleteTask={this.props.deleteTask} 
-                        editTask={this.props.editTask} 
+                        deleteTask={deleteTask} 
+                        editTask={editTask} 
                   
                         task={task}/> )}
-                    <Footer show={this.props.items.length>0} items={this.props.items} />
+                    <Footer show={items.length>0} items={items} />
                 </div>
             </header>
         )

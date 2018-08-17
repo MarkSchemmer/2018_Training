@@ -14,6 +14,7 @@ class App extends React.Component {
     super(props)
     this.state = {
       items : [],
+      filter : 'All',
     }
     this.addTask = this.addTask.bind(this)
     this.deleteTask = this.deleteTask.bind(this)
@@ -42,7 +43,7 @@ class App extends React.Component {
           items : newItems
       }))
   }
-
+// [...[1,2,3],4,5,6,7] -> [1,2,3,4,5,6,7]
   render(){
     return (
 
@@ -51,7 +52,8 @@ class App extends React.Component {
             <Main
             {...this.state} 
             addTask={this.addTask} 
-            deleteTask={this.deleteTask} editTask={this.editTask} />
+            deleteTask={this.deleteTask} 
+            editTask={this.editTask} />
       </div>
     )
   }

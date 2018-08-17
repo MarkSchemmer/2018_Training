@@ -3,6 +3,7 @@ import './Task.css'
 
 
 /*
+
     <i class="far fa-thumbtack"></i>
 
     <i class="fas fa-thumbtack"></i>
@@ -11,7 +12,6 @@ import './Task.css'
 
 
 class InnerTask extends React.Component {
-
     constructor(props){
         super(props)
         this.state = {
@@ -81,10 +81,11 @@ class Task extends React.Component {
         this.state = {}
     }
     render(){
+        const {task,editTask,deleteTask} = this.props
         return (
-            <InnerTask task={this.props.task} 
-            editTask={this.props.editTask} 
-            deleteTask={this.props.deleteTask} />
+            <InnerTask task={task} 
+            editTask={editTask} 
+            deleteTask={deleteTask} />
         )
     }
 }
