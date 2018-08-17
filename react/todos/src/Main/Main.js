@@ -10,9 +10,6 @@ class Main extends React.Component {
         this.state = {
                 newTask:'',
         }
-
-
-
         this.handleEnterKey = this.handleEnterKey.bind(this)
     }
 
@@ -26,7 +23,7 @@ class Main extends React.Component {
     }
 
     render(){
-        const {items, deleteTask, editTask} = this.props 
+        const {items, deleteTask, editTask, _filter} = this.props 
         return (
             <header>
                <div className="card">
@@ -39,12 +36,11 @@ class Main extends React.Component {
                    
                     </div>
                         {items.map(task => 
-                        <Task key={task} 
+                        <Task key={task._id} 
                         deleteTask={deleteTask} 
                         editTask={editTask} 
-                  
                         task={task}/> )}
-                    <Footer show={items.length>0} items={items} />
+                    <Footer show={items.length>0} items={items} _filter={_filter} />
                 </div>
             </header>
         )

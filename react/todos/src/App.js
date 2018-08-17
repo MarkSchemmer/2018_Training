@@ -14,36 +14,42 @@ class App extends React.Component {
     super(props)
     this.state = {
       items : [],
-      filter : 'All',
+      _filter : 'All',
+      _id : 0
     }
     this.addTask = this.addTask.bind(this)
     this.deleteTask = this.deleteTask.bind(this)
     this.editTask = this.editTask.bind(this)
   }
 
-
   addTask(task){
-    if(this.state.items.indexOf(task) >= 0) return 
+  //  if(this.state.items.indexOf(task) >= 0) return 
     this.setState(prevState => ({
-      items : prevState.items.concat([task])
+      items : prevState.items.concat([{
+        task:task,
+        completed:false,
+        _id : prevState._id+1
+      }]),
+      _id : prevState._id+1
     }), () => console.log(this.state.items))
   }
 
   deleteTask(task){
     this.setState(prevState => ({
-      items : prevState.items.filter(tsk => tsk !== task)
+      items : prevState.items.filter(tsk => tsk.task !== task.task)
     }))
   }
 
   editTask(updatedTask, oldTask){
-      let index = this.state.items.indexOf(oldTask)
+      let oldArr = Object.keys(this.state.items).map(x => this.state.items[x])
+      let index = oldArr.indexOf(oldTask)
       let newItems = this.state.items.slice()
-      newItems[index] = updatedTask
+      newItems[index].task = updatedTask
       this.setState(prevState => ({
           items : newItems
       }))
   }
-// [...[1,2,3],4,5,6,7] -> [1,2,3,4,5,6,7]
+
   render(){
     return (
 
