@@ -1,5 +1,7 @@
 import React from 'react'
+import Button from '../Button/Button'
 import './Task.css'
+
 
 
 /*
@@ -14,8 +16,11 @@ class InnerTask extends React.Component {
         this.state = {
             over : false,
             HasBeenDoubleClicked : false, 
-            newValue : this.props.task.task
+            newValue : this.props.task.task,
+            task : this.props.task,
         }
+
+
     } 
 
     update(){
@@ -29,11 +34,35 @@ class InnerTask extends React.Component {
         }
     }
 
+
+
+
+
     editMode(){
+
+        if(this.state.task.completed===true){
+            return (
+                
+            <li style={{padding:'15px',textAlign:'left'}} 
+            onMouseOver={() => this.setState({over:true})}
+            onMouseLeave={() => this.setState({over:false})}
+            className="list-group-item"
+            >
+                <Button handleCompleted={() => this.props.handleCompleted(this.state.task._id)} task={this.props.task} />
+               <strike> {this.props.task.task} </strike>
+                {this.state.over ? 
+                <button 
+                onClick={() => this.props.deleteTask(this.props.task)} 
+                className="btn btn-danger btn-sm">X</button> :
+                 null}</li>
+            )
+        }
+
         if(this.state.HasBeenDoubleClicked){
 
             return (
                     <input
+
             style={{padding:'15px',textAlign:'left',height:'65px', border:'none'}} 
             className="list-group-item form-control"
             name="newValue"
@@ -44,12 +73,14 @@ class InnerTask extends React.Component {
             />)
         } else {
                 return (
+
             <li style={{padding:'15px',textAlign:'left'}} 
             className="list-group-item"
             onMouseOver={() => this.setState({over:true})}
             onMouseLeave={() => this.setState({over:false})}
             onDoubleClick={() => this.setState({HasBeenDoubleClicked:true}, () => this.render())}
             >
+                <Button handleCompleted={() => this.props.handleCompleted(this.state.task._id)} task={this.props.task} />
                 {this.props.task.task}
                 {this.state.over ? 
                 <button 
@@ -75,6 +106,7 @@ class Task extends React.Component {
         return (
             <InnerTask task={task} 
             editTask={editTask} 
+            handleCompleted={this.props.handleCompleted}
             deleteTask={deleteTask} />
         )
     }

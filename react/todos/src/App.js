@@ -14,12 +14,12 @@ class App extends React.Component {
     super(props)
     this.state = {
       items : [],
-      _filter : 'All',
       _id : 0
     }
     this.addTask = this.addTask.bind(this)
     this.deleteTask = this.deleteTask.bind(this)
     this.editTask = this.editTask.bind(this)
+    this.handleCompleted=this.handleCompleted.bind(this)
   }
 
   addTask(task){
@@ -50,6 +50,20 @@ class App extends React.Component {
       }))
   }
 
+      handleCompleted(id){
+        let newItems = this.state.items.map(x =>{
+          if(x._id===id){
+            x.completed = x.completed?false : true 
+            return x 
+          } else {
+            return x 
+          }
+        })
+        this.setState(prevState => ({
+            items : newItems
+        }), () => this.render())
+    }
+
   render(){
     return (
 
@@ -58,6 +72,7 @@ class App extends React.Component {
             <Main
             {...this.state} 
             addTask={this.addTask} 
+            handleCompleted={this.handleCompleted}
             deleteTask={this.deleteTask} 
             editTask={this.editTask} />
       </div>
