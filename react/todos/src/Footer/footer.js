@@ -10,7 +10,6 @@ class Footer extends React.Component  {
     }
   }
 
-
   isActive(which){
     if(this.props._filter===which){
         return "btn btn-primary btn-sm active"

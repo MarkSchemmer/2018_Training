@@ -56,14 +56,19 @@ class Form extends React.Component {
 
 class App extends React.Component {
 
-    state = {
-        cards: []
+    constructor(props){
+        super(props)
+        this.state = {
+            cards : []
+        }
     }
 
     getUser = (cardInfo) => {
         this.setState(prevState => ({
             cards: prevState.cards.concat(cardInfo)
-        }))
+        }), () => { // callback function...
+            console.log(this.state.cards)
+        })
     }
 
     render() {
