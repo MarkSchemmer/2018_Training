@@ -4,7 +4,6 @@ import Header from './Header/header'
 import Square from './Square/square'
 import './App.scss'
 
-
 class App extends Component {
 
   constructor(props){
@@ -20,7 +19,7 @@ class App extends Component {
     this.hasAnySquaresSelected = this.hasAnySquaresSelected.bind(this)
     this.next = this.next.bind(this)
     this.autoPlay = this.autoPlay.bind(this)
-    this.timer - this.timer.bind(this)
+    this.timer = this.timer.bind(this)
     this.resetBoard = this.resetBoard.bind(this)
   }
 
