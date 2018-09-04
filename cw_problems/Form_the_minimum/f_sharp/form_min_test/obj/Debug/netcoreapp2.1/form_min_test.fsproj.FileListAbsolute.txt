@@ -1,0 +1,13 @@
+d:\My_Files\courses\2018_training\cw_problems\Form_the_minimum\f_sharp\form_min_test\bin\Debug\netcoreapp2.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+d:\My_Files\courses\2018_training\cw_problems\Form_the_minimum\f_sharp\form_min_test\bin\Debug\netcoreapp2.1\xunit.runner.reporters.netcoreapp10.dll
+d:\My_Files\courses\2018_training\cw_problems\Form_the_minimum\f_sharp\form_min_test\bin\Debug\netcoreapp2.1\xunit.runner.utility.netcoreapp10.dll
+d:\My_Files\courses\2018_training\cw_problems\Form_the_minimum\f_sharp\form_min_test\bin\Debug\netcoreapp2.1\form_min_test.deps.json
+d:\My_Files\courses\2018_training\cw_problems\Form_the_minimum\f_sharp\form_min_test\bin\Debug\netcoreapp2.1\form_min_test.runtimeconfig.json
+d:\My_Files\courses\2018_training\cw_problems\Form_the_minimum\f_sharp\form_min_test\bin\Debug\netcoreapp2.1\form_min_test.runtimeconfig.dev.json
+d:\My_Files\courses\2018_training\cw_problems\Form_the_minimum\f_sharp\form_min_test\bin\Debug\netcoreapp2.1\form_min_test.dll
+d:\My_Files\courses\2018_training\cw_problems\Form_the_minimum\f_sharp\form_min_test\bin\Debug\netcoreapp2.1\form_min_test.pdb
+d:\My_Files\courses\2018_training\cw_problems\Form_the_minimum\f_sharp\form_min_test\obj\Debug\netcoreapp2.1\form_min_test.fsprojAssemblyReference.cache
+d:\My_Files\courses\2018_training\cw_problems\Form_the_minimum\f_sharp\form_min_test\obj\Debug\netcoreapp2.1\form_min_test.AssemblyInfoInputs.cache
+d:\My_Files\courses\2018_training\cw_problems\Form_the_minimum\f_sharp\form_min_test\obj\Debug\netcoreapp2.1\form_min_test.AssemblyInfo.fs
+d:\My_Files\courses\2018_training\cw_problems\Form_the_minimum\f_sharp\form_min_test\obj\Debug\netcoreapp2.1\form_min_test.dll
+d:\My_Files\courses\2018_training\cw_problems\Form_the_minimum\f_sharp\form_min_test\obj\Debug\netcoreapp2.1\form_min_test.pdb
