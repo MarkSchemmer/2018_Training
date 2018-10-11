@@ -1,0 +1,14 @@
+D:\My_Files\courses\2018_training\exercism\csharp\leap\bin\Debug\netcoreapp2.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+D:\My_Files\courses\2018_training\exercism\csharp\leap\bin\Debug\netcoreapp2.1\xunit.runner.reporters.netcoreapp10.dll
+D:\My_Files\courses\2018_training\exercism\csharp\leap\bin\Debug\netcoreapp2.1\xunit.runner.utility.netcoreapp10.dll
+D:\My_Files\courses\2018_training\exercism\csharp\leap\bin\Debug\netcoreapp2.1\Leap.deps.json
+D:\My_Files\courses\2018_training\exercism\csharp\leap\bin\Debug\netcoreapp2.1\Leap.runtimeconfig.json
+D:\My_Files\courses\2018_training\exercism\csharp\leap\bin\Debug\netcoreapp2.1\Leap.runtimeconfig.dev.json
+D:\My_Files\courses\2018_training\exercism\csharp\leap\bin\Debug\netcoreapp2.1\Leap.dll
+D:\My_Files\courses\2018_training\exercism\csharp\leap\bin\Debug\netcoreapp2.1\Leap.pdb
+D:\My_Files\courses\2018_training\exercism\csharp\leap\obj\Debug\netcoreapp2.1\Leap.csprojAssemblyReference.cache
+D:\My_Files\courses\2018_training\exercism\csharp\leap\obj\Debug\netcoreapp2.1\Leap.csproj.CoreCompileInputs.cache
+D:\My_Files\courses\2018_training\exercism\csharp\leap\obj\Debug\netcoreapp2.1\Leap.AssemblyInfoInputs.cache
+D:\My_Files\courses\2018_training\exercism\csharp\leap\obj\Debug\netcoreapp2.1\Leap.AssemblyInfo.cs
+D:\My_Files\courses\2018_training\exercism\csharp\leap\obj\Debug\netcoreapp2.1\Leap.dll
+D:\My_Files\courses\2018_training\exercism\csharp\leap\obj\Debug\netcoreapp2.1\Leap.pdb

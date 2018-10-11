@@ -1,0 +1,13 @@
+D:\My_Files\courses\2018_training\exercism\fsharp\hello-world\bin\Debug\netcoreapp2.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+D:\My_Files\courses\2018_training\exercism\fsharp\hello-world\bin\Debug\netcoreapp2.1\xunit.runner.reporters.netcoreapp10.dll
+D:\My_Files\courses\2018_training\exercism\fsharp\hello-world\bin\Debug\netcoreapp2.1\xunit.runner.utility.netcoreapp10.dll
+D:\My_Files\courses\2018_training\exercism\fsharp\hello-world\bin\Debug\netcoreapp2.1\HelloWorld.deps.json
+D:\My_Files\courses\2018_training\exercism\fsharp\hello-world\bin\Debug\netcoreapp2.1\HelloWorld.runtimeconfig.json
+D:\My_Files\courses\2018_training\exercism\fsharp\hello-world\bin\Debug\netcoreapp2.1\HelloWorld.runtimeconfig.dev.json
+D:\My_Files\courses\2018_training\exercism\fsharp\hello-world\bin\Debug\netcoreapp2.1\HelloWorld.dll
+D:\My_Files\courses\2018_training\exercism\fsharp\hello-world\bin\Debug\netcoreapp2.1\HelloWorld.pdb
+D:\My_Files\courses\2018_training\exercism\fsharp\hello-world\obj\Debug\netcoreapp2.1\HelloWorld.fsprojAssemblyReference.cache
+D:\My_Files\courses\2018_training\exercism\fsharp\hello-world\obj\Debug\netcoreapp2.1\HelloWorld.AssemblyInfoInputs.cache
+D:\My_Files\courses\2018_training\exercism\fsharp\hello-world\obj\Debug\netcoreapp2.1\HelloWorld.AssemblyInfo.fs
+D:\My_Files\courses\2018_training\exercism\fsharp\hello-world\obj\Debug\netcoreapp2.1\HelloWorld.dll
+D:\My_Files\courses\2018_training\exercism\fsharp\hello-world\obj\Debug\netcoreapp2.1\HelloWorld.pdb

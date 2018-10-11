@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter} from 'react-router-dom'
 import './index.css';
-import Main from './components/Main/Main';
-import registerServiceWorker from './registerServiceWorker';
-
-import { Router } from 'react-router'
-import routes from './routes/routes'
+import App from './components/App/App'
 
 
-Router.run(routes, (Handler) => {
-    React.render(<Handler />, document.getElementById('root'))
-    registerServiceWorker()
-})
+
+ReactDOM.render( (
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+), document.getElementById('root'))
+
+
 

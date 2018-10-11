@@ -1,10 +1,8 @@
 import React from 'react'
-import axios from 'axios'
 import './App.css'
 import '../../../node_modules/bootstrap/dist/css/bootstrap.css'
 import Header from '../Header/header'
-import { Switch, Route } from 'react-router-dom'
-
+import Main from '../Main/Main'
 class App extends React.Component {
 
   constructor(props){
