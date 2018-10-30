@@ -13,19 +13,20 @@ module.exports = {
             {
                 test:/\.js$/,
                 exclude: /node_modules/,
-                use : ["babel-loader"]
+                use : {
+                    loader: 'babel-loader'
+                }
             }, 
             {
-                test:/\.css$/,
-                use : ['style-loader', 'css-loader']
+                test:/\.scss$/,
+                use : ['style-loader', 'css-loader', 'sass-loader']
             }
         ]
     }, 
     devServer:{
-        watchContentBase:true,
+       // watchContentBase:true,
         host:'localhost', // default is localhost!
-     // publicPath:path.resolve('index.html'),
-        hot:true,
+       // publicPath:path.resolve('index.bundle.html'),
         inline:true,
         port:3000,
         proxy: {
@@ -36,9 +37,6 @@ module.exports = {
     plugins:[
         new HtmlWebpackPlugin({
             template:'./public/index.html'
-        }),
-        new webpack.HotModuleReplacementPlugin({
-            multiStep:true 
         })
     ]
 }
