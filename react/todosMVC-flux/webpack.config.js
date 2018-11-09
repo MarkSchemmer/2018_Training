@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 
 module.exports = {
-    entry: './src/index.js',
+    entry:  './src/index.js',
     output : {
         path : path.resolve(__dirname, "dist"), 
         filename: "index.bundle.js"
@@ -35,6 +35,7 @@ module.exports = {
         }
     },
     plugins:[
+        new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
             template:'./public/index.html'
         })

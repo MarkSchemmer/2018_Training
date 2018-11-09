@@ -1,7 +1,6 @@
 
 import React from "react"
 import './app.scss'
-import axios from "axios"
 import todoStore from '../../flux/Store/todoStore/todoStore'
 import * as todoActions from '../../flux/Actions/todoActions/todoActions'
 import TodoItem from "../TodoApp/TodoItem/TodoItem"
@@ -34,12 +33,12 @@ class App extends React.Component {
 
     _getAllTodos(){
         todoStore.getAllTodos().then(({data}) => {
-            this.setState( { todos: data, all_todos : data})
+            this.setState( (prevState) =>  ({ todos: data, all_todos : data, _filter:prevState._filter}))
         })
     }
 
     componentWillMount(){
-        todoStore.on(CHANGE_EVENT, () => this._getAllTodos())
+        todoStore.on('change', () => this._getAllTodos())
     }
 
     componentDidMount(){
@@ -81,11 +80,10 @@ class App extends React.Component {
     }
 
     filterUncompleted(){
-        todoStore.getAllTodos().then(({data}) => {
+          let uncompleted = this.state.all_todos.filter(x => x.completed===false)
            this.setState({ 
-               todos : data.filter(x => x.completed===false),
+               todos : uncompleted,
                _filter:'Active' })
-        })
     }
 
     filterAll(){
@@ -107,7 +105,7 @@ class App extends React.Component {
         }
     }
 
-    toggleAllTodos(){
+   toggleAllTodos(){
          let copy = this.state.which
          this.setState(prevState => ({
             todos:prevState.todos.map(x => {
@@ -127,6 +125,18 @@ class App extends React.Component {
         const styles = {
             textAlign:'center'
         }
+        let todos
+        switch(this.state._filter){
+            case 'All' :
+                todos = this.state.all_todos
+            break 
+            case 'Active' :
+                todos = this.state.all_todos.filter(x => x.completed===false)
+            break 
+            case 'Completed' : 
+                todos = this.state.all_todos.filter(x => x.completed)
+            break 
+        }
 
         return (
             <div style={styles}>
@@ -145,7 +155,7 @@ class App extends React.Component {
 
                       
                     <ul className="todo-list">
-                            {this.state.todos.map(todoObj =>  
+                            {todos.map(todoObj =>  
                             <TodoItem 
                              updateTodoById={this.updateTodoById}
                              toggleTodoCompetion={this.toggleTodoCompletionById}

@@ -2,6 +2,8 @@
 Small description of the project and the core objectives...
 
 
+Core Technologies used in this project
+
 
 
 Important notes about this project...

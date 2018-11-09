@@ -63,6 +63,7 @@ class TodoItem extends React.Component {
        }
 
         return (
+
             <li onMouseLeave={() => this.setState({ showDelete : false }) }
             onMouseEnter={() => this.setState({ showDelete : true }) }
             onMouseOver={() => this.setState({ showDelete : true }) }>
