@@ -1,0 +1,91 @@
+/*
+
+
+   .todo-list {
+        list-style-type: none;
+        position: absolute;
+        padding:0;
+        margin:0;
+        width: 100%;
+
+
+        li {
+            position: relative;
+            font-size: 24px;
+            border-bottom: 0px solid #ededed;
+            z-index: 2;
+            width: 500px;
+
+            .view {
+                //  float:left;
+                width: 500px;
+                background-color: #fff;
+                padding : 20px 0;
+                position: inherit;
+                border-top: 1px solid #ededed;
+                box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 
+                0 25px 50px 0 rgba(0, 0, 0, 0.1);
+                text-align: left;
+
+
+
+
+*/
+
+.todoItem {
+    width: 400px;
+    border:1px solid black;
+    padding:15px;
+    text-align: left;
+    padding-bottom: 36px;
+    background:#fff;
+}
+
+.todoItem .delete {
+    position: relative;
+    top:-15px;
+}
+
+.todoItem.showing{
+    padding-bottom: 7px;
+}
+
+.under-line-todo-list {
+    display: flex;
+   /* // align-items: flex-end; */
+}
+
+.under-line-todo-list button {
+    align-self: flex-end;
+    position: relative;
+    top:32px !important;
+    margin-left: -1px !important;
+    margin-right: 5px;
+}
+
+.todoItem:hover{
+    cursor: pointer;
+}
+
+.todoItem button {
+    float :right;
+    vertical-align: center;
+}
+
+/* .todoItem:nth-child(1){
+    border-top: none;
+    border-bottom: none;
+} */
+
+.todoItem:nth-child(even){
+    border-top: none;
+    border-bottom: none;
+}
+
+.todoItem:last-child{
+    border-bottom: 1px solid black;
+}
+
+.todoItem:first-child {
+    border-top: none;
+}
