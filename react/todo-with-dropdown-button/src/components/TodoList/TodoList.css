@@ -23,7 +23,7 @@
                 padding : 20px 0;
                 position: inherit;
                 border-top: 1px solid #ededed;
-                box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 
+                box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
                 0 25px 50px 0 rgba(0, 0, 0, 0.1);
                 text-align: left;
 
@@ -34,58 +34,108 @@
 
 .todoItem {
     width: 400px;
+    height: 100px;
     border:1px solid black;
-    padding:15px;
+    padding:10px 25px 25px 25px;
     text-align: left;
-    padding-bottom: 36px;
     background:#fff;
-}
-
-.todoItem .delete {
     position: relative;
-    top:-15px;
-}
-
-.todoItem.showing{
-    padding-bottom: 7px;
-}
-
-.under-line-todo-list {
     display: flex;
-   /* // align-items: flex-end; */
+    /* align-items: flex-end; */
+    flex-direction: column;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
+    0 25px 50px 0 rgba(0, 0, 0, 0.1);
+    border:none;
 }
+
+.todoItem .todoText{
+    order: 1;
+    padding: 10px;
+    line-height: 30px;
+    font-size: 30px;
+}
+
+.todoItem .under-line-todo-list {
+    order: 2;
+    padding-left: 10px;
+}
+
+.todoItem .under-line-todo-list button {
+    margin-right: 3px;
+    margin-bottom: 5px;
+    font-size: 11px;
+    padding: 3px 20px;
+}
+
+.todoItem .deleteButton {
+    position: absolute;
+    order: 3;
+    width: 33px;
+    height: 36px;
+    left: calc(96% - 33px);
+    top: calc(100% - 75px);
+}
+
+/* .todoItem span{ */
+    /* position: absolute;
+    top:50%; */
+    /* padding: 10px 10px 10px 0; */
+    /* display: block;
+    width: 100%; */
+/* } */
+
+
+
+
+
+
+
+.todoItem .deleteButton {
+    /* float: right; */
+}
+
+/* .todoItem .delete {
+} */
+
+/* .todoItem.showing{
+    padding-bottom: 7px;
+} */
+
+/* .under-line-todo-list {
+} */
 
 .under-line-todo-list button {
-    align-self: flex-end;
-    position: relative;
-    top:32px !important;
-    margin-left: -1px !important;
-    margin-right: 5px;
+    /* align-self: flex-end; */
+    /* position: relative; */
+    /* top:32px !important;
+    margin-left: -1px !important; */
+    /* margin:0; */
+
 }
 
 .todoItem:hover{
     cursor: pointer;
 }
 
-.todoItem button {
+/* .todoItem button {
     float :right;
     vertical-align: center;
-}
+} */
 
 /* .todoItem:nth-child(1){
     border-top: none;
     border-bottom: none;
 } */
-
+/*
 .todoItem:nth-child(even){
     border-top: none;
     border-bottom: none;
 }
 
-.todoItem:last-child{
+/* .todoItem:last-child{
     border-bottom: 1px solid black;
-}
+}*/
 
-.todoItem:first-child {
+/* .todoItem:first-child {
     border-top: none;
-}
+}  */

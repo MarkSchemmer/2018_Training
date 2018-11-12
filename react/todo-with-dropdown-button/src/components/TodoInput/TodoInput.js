@@ -1,6 +1,7 @@
 import React from 'react'
 import TodoList from '../TodoList/TodoList'
 import DropDownHeader from '../DropDownHeader/DropDownHeader'
+import Modal from '../Modal/Modal'
 import './TodoInput.css'
 const ENTER = 13, DOWNARROW = 40, UPARROW = 38
 class TodoInput extends React.Component {
@@ -13,11 +14,14 @@ class TodoInput extends React.Component {
             ],
             Todos:[],
             showDropDown:false,
-            inputIsFocused:false 
+            inputIsFocused:false,
+            showModal:false
         }
         this.input = React.createRef()
         this._Refs = []
+        this._RefsListItems = []
         this.nthIndex = 0
+        this.listNthIndex = 0
         this.tabChange = -1
         this.change = this.change.bind(this)
         this.addTag = this.addTag.bind(this)
@@ -29,10 +33,14 @@ class TodoInput extends React.Component {
         this.cloneTodoDo = this.cloneTodoDo.bind(this)
         this.isTodoDefault = this.isTodoDefault.bind(this)
         this.preChange = this.preChange.bind(this)
+        this.focusList = this.focusList.bind(this)
+        this.showModal = this.showModal.bind(this)
+        this.hideModal = this.hideModal.bind(this)
     }
 
     componentDidMount(){
         window.Refs = this._Refs
+        window._RefsList = this._RefsListItems
     }
 
     preChange(e){
@@ -52,6 +60,14 @@ class TodoInput extends React.Component {
             let search = this.state.newTodo.val.split('#')[1]
             this.filterOrderOfTodoCategory(search)
         }
+    }
+
+    hideModal(){
+        this.setState({ showModal : false})
+    }
+
+    showModal(){
+        this.setState({ showModal : true })
     }
 
     cloneTodoDo = (options={}) => Object.assign({}, this.state.newTodo, options)
@@ -77,6 +93,11 @@ class TodoInput extends React.Component {
         buttons[this.nthIndex].ref.focus()
     }
 
+    focusList(change){
+            this.listNthIndex=change
+            this._RefsListItems[this.listNthIndex].list.focus()
+    }
+
     handleKeyUp(e,tag=null, _Ref=null){
         let newValue = this.state.newTodo.val
         if(this.state.showDropDown){
@@ -84,7 +105,7 @@ class TodoInput extends React.Component {
                 this.focusOnTodoInList()
             } else if(e.keyCode===DOWNARROW && !tag && this.state.inputIsFocused) {
                 this.focusOnTodoInList()
-            } else if(e.keyCode===ENTER && tag && _Ref.focused){
+            } else if(e.keyCode===ENTER && tag && _Ref!==null){
                 this.addTagAndRemoveHashString(tag)
             }  else if(e.keyCode===UPARROW && _Ref!==null){
                 if(this.nthIndex===0) {
@@ -103,6 +124,23 @@ class TodoInput extends React.Component {
             }
         } else if(e.keyCode===ENTER && newValue.length>4){
                 this.addTodo(this.state.newTodo)
+        } else { 
+            if(e.keyCode===DOWNARROW && this.state.Todos.length>0) {
+                if (this.state.inputIsFocused){
+                    this.setState({ inputIsFocused : false}, 
+                        () =>  this.focusList(0))
+                } else if(this.listNthIndex>=0 && 
+                    this.listNthIndex < this.state.Todos.length-1){
+                    this.focusList(this.listNthIndex+1)
+                } 
+            } else if(e.keyCode===UPARROW &&  this.state.Todos.length>0){
+                if(this.listNthIndex===0){
+                    this.input.focus()
+                    this.listNthIndex=0
+                } else if (this.listNthIndex>0 ){
+                    this.focusList(this.listNthIndex-1)
+                }
+            }
         }
     }
 
@@ -161,6 +199,7 @@ class TodoInput extends React.Component {
             showDropDown:false
         }, () => {
             this.input.focus()
+            this.nthIndex=0
         })
     }
 
@@ -176,6 +215,13 @@ class TodoInput extends React.Component {
          ? newTodo.categorys.map(x => x.name) : []
         return (
             <div className="TodoInput">
+                 <Modal 
+                 hideModal={this.hideModal}
+                 show={this.state.showModal} 
+                 handleClose={this.hideModal}>
+                    <p>Modal</p>
+                    <p>Data</p>
+                </Modal>
                 <input
                  ref={(input) => this.input = input }
                  onKeyUp={(e) => this.handleKeyUp(e)}
@@ -194,9 +240,18 @@ class TodoInput extends React.Component {
                                                     .filter(str => !whichButtonsYouHave.includes(str))}
                 TodoCategorey={TodoCategorey} /> : null }
                 <ul>
-                    {Todos.map((todo, index) => <TodoList
+                    {Todos.map((todo, index) => { 
+                    this._RefsListItems[index] = {}
+                    let theRef = this._RefsListItems[index]
+                   return (<TodoList
+                    showModal={this.showModal}
+                    hideModal={this.hideModal}
+                    onKeyUp={this.handleKeyUp}
+                    _ref={ theRef }
+                    index={index}
                     deleteTodo={this.deleteTodo.bind(this, todo._id)}
                     todo={todo} key={index} /> )}
+                    )}
                 </ul>
             </div>
         )

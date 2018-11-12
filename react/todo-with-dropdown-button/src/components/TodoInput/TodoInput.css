@@ -43,14 +43,22 @@
     font-size: 25px;
 }
 
+.TodoInput input:focus{
+    outline: none;
+}
+
+.TodoInput .under-line-list  button {
+    height: 24px;
+    font-size: 11px;
+    padding: 3px 20px;
+}
+
 ul {
     list-style-type: none;
      width: 400px;
      margin:auto;
      padding:0;
      border:none;
-     display: flex;
-     flex-direction: column;
      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 
      0 25px 50px 0 rgba(0, 0, 0, 0.1);
 }
@@ -59,6 +67,17 @@ ul {
     width: 400px;
     margin:auto;
     display: flex;
+}
+
+.under-line-list button {
+    position: relative;
+    margin-top: -36px;
+    margin-right: 3px;
+}
+
+
+.under-line-list button:first-child{
+    margin-left:15px;
 }
 
 /* 

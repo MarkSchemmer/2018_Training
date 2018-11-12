@@ -12,11 +12,7 @@ class DropDownHeader extends React.Component {
 
     whatTypeOfButton(which, index){
         const catButtons = {
-            marginTop:'-32px',
-            marginLeft:'2px',
             zIndex:'5',
-            position:'relative',
-            top:'-5px'
         }
 
         let genButton = (which,color) =>
