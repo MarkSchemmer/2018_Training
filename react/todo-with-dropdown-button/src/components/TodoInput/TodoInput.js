@@ -50,10 +50,12 @@ class TodoInput extends React.Component {
             const {cloneTodoDo, isTodoDefault}=this
             isTodoDefault() ? copy = cloneTodoDo({ val : newValue, _id : Date.now() }) 
                             : copy = cloneTodoDo({ val : newValue })
-
+            if( !this.state.newTodo.categorys.length === this.state.TodoCategorey.length ? false : true  ) { 
             this.setState({showDropDown:containsHash, 
                            newTodo:copy}, () => this.change())
+            }
         }
+
 
     change(){
         if(this.state.showDropDown){
@@ -103,6 +105,7 @@ class TodoInput extends React.Component {
         if(this.state.showDropDown){
             if(e.keyCode === ENTER && !tag && this.state.inputIsFocused) {
                 this.focusOnTodoInList()
+
             } else if(e.keyCode===DOWNARROW && !tag && this.state.inputIsFocused) {
                 this.focusOnTodoInList()
             } else if(e.keyCode===ENTER && tag && _Ref!==null){
@@ -151,10 +154,12 @@ class TodoInput extends React.Component {
         .map(x => x.toLowerCase())
         .filter(str => !whichButtonsYouHave.includes(str))
 
-        if(this._Refs.every(_ => _.ref.style.visibility==="hidden")){
+        if(this._Refs.length > 0 || this._Refs.every(_ => _.ref.style.visibility==="hidden")){
             TodoCategorey.forEach((item,index) => {
-                this._Refs[index].ref.style.visibility = ""
-                this._Refs[index].ref.style.display = ""
+                if(this._Refs[index].ref){
+                    this._Refs[index].ref.style.visibility = ""
+                    this._Refs[index].ref.style.display = ""
+                }
            })
         } else {
             todos.forEach((item,index) => {
@@ -162,12 +167,16 @@ class TodoInput extends React.Component {
                 keyword = keyword ? keyword.toLowerCase() : ""
                 if(item.indexOf(keyword) > -1){
                     // display show
-                    this._Refs[index].ref.style.visibility=""
-                    this._Refs[index].ref.style.display=""
+                    if(this._Refs[index].ref){
+                            this._Refs[index].ref.style.visibility=""
+                            this._Refs[index].ref.style.display=""
+                    }
                 } else {
                     // display hide
-                    this._Refs[index].ref.style.visibility="hidden"
-                    this._Refs[index].ref.style.display="none"
+                    if(this._Refs[index].ref){
+                        this._Refs[index].ref.style.visibility="hidden"
+                        this._Refs[index].ref.style.display="none"
+                    }
                 }
             })
         }
@@ -211,7 +220,7 @@ class TodoInput extends React.Component {
 
     render(){
         const { newTodo, Todos, showDropDown, TodoCategorey} = this.state 
-        const whichButtonsYouHave = newTodo.categorys.some(x => x===null)
+        const whichButtonsYouHave = newTodo.categorys
          ? newTodo.categorys.map(x => x.name) : []
         return (
             <div className="TodoInput">

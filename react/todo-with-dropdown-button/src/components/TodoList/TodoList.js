@@ -14,8 +14,7 @@ class TodoList extends React.Component {
     }
 
 
-    isDraggin(e){
-      //  alert(e)
+    isDraggin(e) {
         this.setState({ isDraggingNow : true })
     }
 

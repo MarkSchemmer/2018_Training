@@ -43,10 +43,12 @@ class DropDownHeader extends React.Component {
         const dropdownContent = {
             zIndex:'100'
         }
-        const { TodoCategorey, addTag, dropDown, _Refs } = this.props
+        const { addTag, dropDown, _Refs } = this.props
         return(
             <div className="dropDown">
-                <button tabIndex="-1" className="dropbtn">DropDown</button>
+                <button tabIndex="-1" className="dropbtn"> 
+                 {dropDown.length===0 ? 'No more tags available':'DropDown' }
+                </button>
                 <div style={dropdownContent}  className="dropdown-content">
                     {dropDown.map((x, index) => 
                     <a tabIndex={0}
