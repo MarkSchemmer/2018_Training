@@ -6,8 +6,17 @@ class TodoList extends React.Component {
         super(props)
         this.state = {
             canShowDelete:false,
-            editTodo:false
+            editTodo:false,
+            isDraggingNow:false,
         }
+
+        this.isDraggin = this.isDraggin.bind(this)
+    }
+
+
+    isDraggin(e){
+      //  alert(e)
+        this.setState({ isDraggingNow : true })
     }
 
     render(){
@@ -33,7 +42,7 @@ class TodoList extends React.Component {
         }
 
         const formatSpan = (str) => {
-          let howManyChars = str.match(/[A-Z]{,}/g) ? 15 : 24
+          let howManyChars = str.match(/[A-Z]{1,}/g) ? 15 : 16
            return str
            .split('')
            .filter((item,index) => index < howManyChars)
@@ -41,18 +50,25 @@ class TodoList extends React.Component {
            .join('')
         }
 
+        const _styles = {
+            backgroundColor:'#fff',
+            zIndex:'5',
+            paddingBottom : !hasCategoreys ? '7px' :'',
+            opacity : this.state.isDraggingNow ? '1' : ''
+        }
+
         const { styleObj } = properListItem()
         return (
            <li 
+           onDragStart={(e) => this.isDraggin(e)}
+           draggable
            onDoubleClick={ () => this.props.showModal() }
            onKeyUp={(e) => this.props.onKeyUp(e) }
            ref={c => this.props._ref.list = c}
-           tabIndex="0" 
-           style={styleObj} 
+           tabIndex="0"  
+           style={_styles}
            className={ this.state.canShowDelete ? 
             'todoItem ' + 'showing' : 'todoItem'} 
-            style={{ zIndex:'5'}}
-            //onDoubleClick={() => this.setState({ editTodo : true })}
            onMouseLeave={() => this.setState({ canShowDelete : false })}
            onMouseOver={() => this.setState({ canShowDelete : true })}
            >
