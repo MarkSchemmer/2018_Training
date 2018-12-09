@@ -1,8 +1,10 @@
 import React from 'react'
 import TodoList from '../TodoList/TodoList'
 import DropDownHeader from '../DropDownHeader/DropDownHeader'
+import ButtonTag from './ButtonTag/ButtonTag'
 import Modal from '../Modal/Modal'
 import './TodoInput.css'
+import '../DropDownHeader/wobbles.css'
 const ENTER = 13, DOWNARROW = 40, UPARROW = 38
 class TodoInput extends React.Component {
     constructor(props){
@@ -36,6 +38,8 @@ class TodoInput extends React.Component {
         this.focusList = this.focusList.bind(this)
         this.showModal = this.showModal.bind(this)
         this.hideModal = this.hideModal.bind(this)
+        this.removeTagFromTodo = this.removeTagFromTodo.bind(this)
+        this.removeTagFromTodoList = this.removeTagFromTodoList.bind(this)
     }
 
     componentDidMount(){
@@ -43,9 +47,16 @@ class TodoInput extends React.Component {
         window._RefsList = this._RefsListItems
     }
 
+    countMatches = (str) => {
+        const re = /#/ig
+        return ((str || '').match(re) || []).length
+    }
+
     preChange(e){
             let newValue = e.target.value
             let containsHash = newValue.includes('#')
+            if(containsHash && this.countMatches(newValue)>1)
+                return 
             let copy 
             const {cloneTodoDo, isTodoDefault}=this
             isTodoDefault() ? copy = cloneTodoDo({ val : newValue, _id : Date.now() }) 
@@ -92,7 +103,8 @@ class TodoInput extends React.Component {
        var buttons =  this._Refs
         .filter(todo => todo.ref!==null)
         .filter(todo=> todo.ref.style.visibility==="")
-        buttons[this.nthIndex].ref.focus()
+        if(!!buttons[this.nthIndex])
+            buttons[this.nthIndex].ref.focus()
     }
 
     focusList(change){
@@ -212,6 +224,26 @@ class TodoInput extends React.Component {
         })
     }
 
+    removeTagFromTodo(catName) {
+        const { cloneTodoDo } = this 
+        let copy = cloneTodoDo()
+        copy.categorys = copy.categorys.filter(c => c.name != catName)
+        this.setState({ newTodo: copy }, () => { this.input.focus() })
+    }
+
+    removeTagFromTodoList(_id, catName) {
+        let index = this.state.Todos.findIndex(to => to._id === _id )
+        if(index === -1){
+            return 
+        } else {
+            let oldTodos = this.state.Todos
+            let itemToFilter = oldTodos[index]
+            itemToFilter.categorys = itemToFilter.categorys.filter(n => n.name != catName)
+            oldTodos[index] = itemToFilter
+            this.setState({ Todos : oldTodos }, () => this.input.focus())
+        }
+    }
+
     deleteTodo(_id){
         this.setState((prevState) => ({
             Todos: prevState.Todos.filter(x => x._id !== _id)
@@ -239,10 +271,13 @@ class TodoInput extends React.Component {
                  onBlur={() => this.setState( { inputIsFocused : false } )}
                  value={newTodo.val}
                  placeholder={"press # to put Todo in category"}
-                type="text" /> 
+                type="text" />
+
                 {newTodo.categorys.length>0?
-                <div className="under-line-list">{newTodo.categorys
-                    .map(cat => cat.button)}</div>:null}
+                <div className="under-line-list">
+                        {/* {newTodo.categorys.map(cat => cat.button )} */}
+                        { newTodo.categorys.map(cat => <ButtonTag removeTag={this.removeTagFromTodo} category={cat} />)}
+                </div> : null}
                 {showDropDown ? <DropDownHeader _Refs={this._Refs} 
                                                 onKeyUp={this.handleKeyUp} addTag={this.addTag}
                                                 dropDown={TodoCategorey
@@ -256,6 +291,7 @@ class TodoInput extends React.Component {
                     showModal={this.showModal}
                     hideModal={this.hideModal}
                     onKeyUp={this.handleKeyUp}
+                    removeTag={this.removeTagFromTodoList}
                     _ref={ theRef }
                     index={index}
                     deleteTodo={this.deleteTodo.bind(this, todo._id)}

@@ -1,5 +1,8 @@
 import React from 'react'
+import ButtonTag from '../TodoInput/ButtonTag/ButtonTag'
 import './TodoList.css'
+import '../TodoInput/TodoInput.css'
+import '../DropDownHeader/wobbles.css'
 
 class TodoList extends React.Component {
     constructor(props){
@@ -61,7 +64,7 @@ class TodoList extends React.Component {
            <li 
            onDragStart={(e) => this.isDraggin(e)}
            draggable
-           onDoubleClick={ () => this.props.showModal() }
+        
            onKeyUp={(e) => this.props.onKeyUp(e) }
            ref={c => this.props._ref.list = c}
            tabIndex="0"  
@@ -71,14 +74,21 @@ class TodoList extends React.Component {
            onMouseLeave={() => this.setState({ canShowDelete : false })}
            onMouseOver={() => this.setState({ canShowDelete : true })}
            >
-             <div className="todoText">
+             <div
+             onDoubleClick={ () => this.props.showModal() }
+             className="todoText">
              
                 <span ref={ span => this.props._ref.span = span }
                 >{todo.val.length > 17 ? formatSpan(todo.val) : todo.val}</span>
              </div>
                { hasCategoreys ?
                 <div className="under-line-todo-list">
-                    {todo.categorys.map(cat => cat.button )}
+                    {/* {todo.categorys.map(cat => cat.button )} */}
+                    { todo.categorys.map(cat => 
+                    <ButtonTag 
+                    category={cat}
+                    todoId={todo._id}
+                    removeTag={this.props.removeTag} />)}
                 </div> : null }
               { this.state.canShowDelete ? <button
                     onClick={() => deleteTodo(todo._id)}
