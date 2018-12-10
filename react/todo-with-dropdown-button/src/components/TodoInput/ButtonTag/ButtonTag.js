@@ -38,13 +38,12 @@ class ButtonTag extends React.Component {
             else if(this.state.canWeeble && this.props.todoId==undefined)
                 this.props.removeTag(catName)
         })
-        this.setState({ goingToDelete : false })
     }
 
 
     removeTag(catName){
         if(this.state.canWeeble) {
-            this.setState( { goingToDelete : true } )
+            this.setState( {  goingToDelete : true } )
         } else { 
             this.fn(catName)
         }
@@ -55,8 +54,7 @@ class ButtonTag extends React.Component {
         let classes = (data) => {
            return  ` ${data.buttonData.cls}  
            ${this.state.canWeeble? this.state.weebleClass : this.state.noWobble}
-           ${this.state.goingToDelete ? 'weeble-wobble-delete' : ''}
-           `
+           ${this.state.goingToDelete ? ' weeble-wobble-delete ' : ''} `
         }
 
          const { category } = this.props

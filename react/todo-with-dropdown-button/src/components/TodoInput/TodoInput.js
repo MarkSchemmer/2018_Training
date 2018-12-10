@@ -227,7 +227,7 @@ class TodoInput extends React.Component {
     removeTagFromTodo(catName) {
         const { cloneTodoDo } = this 
         let copy = cloneTodoDo()
-        copy.categorys = copy.categorys.filter(c => c.name != catName)
+        copy.categorys = copy.categorys.filter(c => c.name !== catName)
         this.setState({ newTodo: copy }, () => { this.input.focus() })
     }
 
@@ -238,7 +238,7 @@ class TodoInput extends React.Component {
         } else {
             let oldTodos = this.state.Todos
             let itemToFilter = oldTodos[index]
-            itemToFilter.categorys = itemToFilter.categorys.filter(n => n.name != catName)
+            itemToFilter.categorys = itemToFilter.categorys.filter(n => n.name !== catName)
             oldTodos[index] = itemToFilter
             this.setState({ Todos : oldTodos }, () => this.input.focus())
         }
