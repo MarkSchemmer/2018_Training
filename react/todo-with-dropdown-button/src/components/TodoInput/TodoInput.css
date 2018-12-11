@@ -1,0 +1,58 @@
+
+.TodoInput{
+    margin-bottom: 100px;
+}
+
+.TodoInput input{
+    width: 400px;
+    padding:15px 15px 40px 15px;
+    line-height: 25px;
+    font-size: 25px;
+    position: relative;
+    border:none;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 
+    0 25px 50px 0 rgba(0, 0, 0, 0.1);
+} 
+
+.TodoInput input::placeholder{
+    font-size: 25px;
+}
+
+.TodoInput input:focus{
+    outline: none;
+}
+
+.TodoInput .under-line-list  button {
+    height: 24px;
+    font-size: 11px;
+    padding: 3px 20px;
+}
+
+ul {
+    list-style-type: none;
+     width: 400px;
+     margin:auto;
+     padding:0;
+     border:none;
+     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 
+     0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+.under-line-list{
+    width: 400px;
+    margin:auto;
+    display: flex;
+}
+
+.under-line-list button {
+    position: relative;
+    margin-top: -36px;
+    margin-right: 3px;
+    width: 88px;
+}
+
+
+.under-line-list button:first-child{
+    margin-left:15px;
+}
+

@@ -1,0 +1,37 @@
+
+/* 
+
+    style to be added to make element weeble and wobble 
+
+  -webkit-animation: mymove 2s linear infinite
+*/
+
+.weeble-wobble { 
+    animation: wobbles 2s linear infinite;
+}
+
+
+@keyframes wobbles {
+    33%{ transform: rotate(-6deg); }
+    
+    66% { transform : rotate(6deg); }
+    
+    100% { transform : rotate(0deg); }
+}
+
+
+.weeble-wobble-delete {
+    animation: deleteWobble 1s linear forwards; 
+}
+
+@keyframes deleteWobble {
+    25% { width : 66px; } 
+    50% { width : 44px; } 
+    75% { width : 22px; }
+    100% {
+        width: 0px;
+        padding:0px;
+        border: 0px;
+    }
+}
+

@@ -1,0 +1,83 @@
+body {
+    background: red;
+    padding: none;
+    margin: none;
+}
+
+#searchContainer {
+    display: block;
+    width: 1000px;
+    text-align: center;
+    position: relative;
+}
+
+#searchContainer * {
+    display: block;
+    float: left;
+}
+
+#searchBarContainer {
+    padding-top: 200px;
+    display: inline-block;
+    float: none;
+}
+
+#logo {
+    width: 105px;
+    margin-right: 20px;
+    vertical-align: top;
+}
+
+#searchBar {
+    border: none;
+    vertical-align: top;
+    width: 500px;
+    height: 30px;
+    padding: 5px;
+    box-shadow: 1px 5px 10px #000;
+    text-align: left;
+    border-bottom: 1px solid lightgrey;
+}
+
+#search {
+    color: #007daa;
+    background: white;
+    font-size: 20px;
+    line-height: 30px;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    cursor: pointer;
+    box-shadow: 1px 5px 10px #000;
+    border-bottom: 1px solid lighgrey;
+}
+
+#suggestionContainer{
+    clear: both;
+    position: absolute;
+    top: 225px;
+    left: 248px;
+}
+
+.searchSuggestion{
+    background: white;
+    text-align: left;
+    padding: 15px;
+    width: 520px;
+    clear: both;
+}
+
+
+
+.searchSuggestion:hover {
+    background: rgb(250, 250, 250);
+    cursor: pointer;
+}
+
+.searchSuggestion:hover * {
+    box-shadow: inset 0 0px 0 white, inset 0 -1px 0 rgb(127, 127, 127);
+}
+
+.searchSuggestion:focus  {
+    background-color: black !important;
+}
