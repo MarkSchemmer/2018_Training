@@ -27,22 +27,6 @@ class TodoList extends React.Component {
         const hasCategoreys = todo.categorys.length>0
 
 
-        const properListItem = () => {
-            let cssClass
-            let styleObj = {}
-            if(this.state.canShowDelete){
-                cssClass = 'todoItem showing'
-            } else {
-                cssClass = 'todoItem'
-            }
-
-            if(!hasCategoreys){
-                styleObj.paddingBottom = '7px'
-            } 
-
-            return {cssClass:cssClass, styleObj:styleObj}
-        }
-
         const formatSpan = (str) => {
           let howManyChars = str.match(/[A-Z]{1,}/g) ? 15 : 16
            return str
@@ -58,8 +42,6 @@ class TodoList extends React.Component {
             paddingBottom : !hasCategoreys ? '7px' :'',
             opacity : this.state.isDraggingNow ? '1' : ''
         }
-
-        const { styleObj } = properListItem()
         return (
            <li 
            onDragStart={(e) => this.isDraggin(e)}

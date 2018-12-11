@@ -174,7 +174,7 @@ class TodoInput extends React.Component {
         .map(x => x.toLowerCase())
         .filter(str => !whichButtonsYouHave.includes(str))
 
-        if(this._Refs.length > 0 || this._Refs.every(_ => _.ref.style.visibility==="hidden")){
+        if( this._Refs.every(_ => _.ref.style.visibility==="hidden")){
             TodoCategorey.forEach((item,index) => {
                 if(this._Refs[index].ref){
                     this._Refs[index].ref.style.visibility = ""

@@ -32,10 +32,10 @@ class ButtonTag extends React.Component {
 
     fn(catName=this.props.category.name){
         this.setState({ goingToDelete : false }, () => {
-            if(this.state.canWeeble && this.props.todoId!=undefined){
+            if(this.state.canWeeble && this.props.todoId!==undefined){
                 this.props.removeTag(this.props.todoId, catName)
             }
-            else if(this.state.canWeeble && this.props.todoId==undefined)
+            else if(this.state.canWeeble && this.props.todoId===undefined)
                 this.props.removeTag(catName)
         })
     }
