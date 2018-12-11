@@ -112,56 +112,64 @@ class TodoInput extends React.Component {
             this._RefsListItems[this.listNthIndex].list.focus()
     }
 
-    handleKeyUp(e,tag=null, _Ref=null){
-        let newValue = this.state.newTodo.val
-        if(this.state.showDropDown){
-            if(e.keyCode === ENTER && !tag && this.state.inputIsFocused) {
-                this.focusOnTodoInList()
 
-            } else if(e.keyCode===DOWNARROW && !tag && this.state.inputIsFocused) {
-                this.focusOnTodoInList()
-            } else if(e.keyCode===ENTER && tag && _Ref!==null){
-                this.addTagAndRemoveHashString(tag)
-            }  else if(e.keyCode===UPARROW && _Ref!==null){
-                if(this.nthIndex===0) {
-                    this.input.focus() 
-                 } else { 
-                    if((this.nthIndex-1) >= 0){
-                        this.nthIndex-=1
-                        this.focusOnTodoInList()
-                    }
-                }
-            } else if(e.keyCode===DOWNARROW && _Ref!==null){
-                if((this.nthIndex+1) < this._Refs.length){
-                    this.nthIndex+=1
+    handleKeyUpForShowDropDown(e,tag,_Ref){
+        if(e.keyCode === ENTER && !tag && this.state.inputIsFocused) {
+            this.focusOnTodoInList()
+
+        } else if(e.keyCode===DOWNARROW && !tag && this.state.inputIsFocused) {
+            this.focusOnTodoInList()
+        } else if(e.keyCode===ENTER && tag && _Ref!==null){
+            this.addTagAndRemoveHashString(tag)
+        }  else if(e.keyCode===UPARROW && _Ref!==null){
+            if(this.nthIndex===0) {
+                this.input.focus() 
+             } else { 
+                if((this.nthIndex-1) >= 0){
+                    this.nthIndex-=1
                     this.focusOnTodoInList()
                 }
             }
-        } else if(e.keyCode===ENTER && newValue.length>4){
+        } else if(e.keyCode===DOWNARROW && _Ref!==null){
+            if((this.nthIndex+1) < this._Refs.length){
+                this.nthIndex+=1
+                this.focusOnTodoInList()
+            }
+        }
+    }
+
+    handleKeyUpWhenDropDownNotShowing(e,tag,_Ref) {
+        if(e.keyCode===DOWNARROW && this.state.Todos.length>0) {
+            if (this.state.inputIsFocused){
+                this.setState({ inputIsFocused : false}, 
+                    () =>  this.focusList(0))
+            } else if(this.listNthIndex>=0 && 
+                this.listNthIndex < this.state.Todos.length-1){
+                this.focusList(this.listNthIndex+1)
+            } 
+        } else if(e.keyCode===UPARROW &&  this.state.Todos.length>0){
+            if(this.listNthIndex===0){
+                this.input.focus()
+                this.listNthIndex=0
+            } else if (this.listNthIndex>0 ){
+                this.focusList(this.listNthIndex-1)
+            }
+        }
+    }
+
+    handleKeyUp(e,tag=null, _Ref=null){
+        if(this.state.showDropDown){
+            this.handleKeyUpForShowDropDown(e,tag,_Ref)
+        } else if(e.keyCode===ENTER && this.state.newTodo.val.length>4){
                 this.addTodo(this.state.newTodo)
         } else { 
-            if(e.keyCode===DOWNARROW && this.state.Todos.length>0) {
-                if (this.state.inputIsFocused){
-                    this.setState({ inputIsFocused : false}, 
-                        () =>  this.focusList(0))
-                } else if(this.listNthIndex>=0 && 
-                    this.listNthIndex < this.state.Todos.length-1){
-                    this.focusList(this.listNthIndex+1)
-                } 
-            } else if(e.keyCode===UPARROW &&  this.state.Todos.length>0){
-                if(this.listNthIndex===0){
-                    this.input.focus()
-                    this.listNthIndex=0
-                } else if (this.listNthIndex>0 ){
-                    this.focusList(this.listNthIndex-1)
-                }
-            }
+            this.handleKeyUpWhenDropDownNotShowing(e,tag,_Ref)
         }
     }
 
     filterOrderOfTodoCategory(keyword){
         const { TodoCategorey, newTodo } = this.state
-        const whichButtonsYouHave = newTodo.categorys.map(x => x.name)
+        const whichButtonsYouHave = newTodo.categorys.map(x => x.name.toLowerCase())
         let todos = TodoCategorey
         .map(x => x.toLowerCase())
         .filter(str => !whichButtonsYouHave.includes(str))
@@ -228,7 +236,7 @@ class TodoInput extends React.Component {
         const { cloneTodoDo } = this 
         let copy = cloneTodoDo()
         copy.categorys = copy.categorys.filter(c => c.name !== catName)
-        this.setState({ newTodo: copy }, () => { this.input.focus() })
+        this.setState({ newTodo: copy })
     }
 
     removeTagFromTodoList(_id, catName) {
@@ -240,7 +248,7 @@ class TodoInput extends React.Component {
             let itemToFilter = oldTodos[index]
             itemToFilter.categorys = itemToFilter.categorys.filter(n => n.name !== catName)
             oldTodos[index] = itemToFilter
-            this.setState({ Todos : oldTodos }, () => this.input.focus())
+            this.setState({ Todos : oldTodos })
         }
     }
 
@@ -275,8 +283,13 @@ class TodoInput extends React.Component {
 
                 {newTodo.categorys.length>0?
                 <div className="under-line-list">
-                        {/* {newTodo.categorys.map(cat => cat.button )} */}
-                        { newTodo.categorys.map(cat => <ButtonTag removeTag={this.removeTagFromTodo} category={cat} />)}
+                        { newTodo.categorys.map(cat =>  
+                            !this.state.hasTriggered ?
+                             <ButtonTag 
+                             key={cat.name} 
+                             removeTag={this.removeTagFromTodo} 
+                             category={cat} /> :
+                              null )}
                 </div> : null}
                 {showDropDown ? <DropDownHeader _Refs={this._Refs} 
                                                 onKeyUp={this.handleKeyUp} addTag={this.addTag}

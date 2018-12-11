@@ -83,9 +83,9 @@ class TodoList extends React.Component {
              </div>
                { hasCategoreys ?
                 <div className="under-line-todo-list">
-                    {/* {todo.categorys.map(cat => cat.button )} */}
                     { todo.categorys.map(cat => 
                     <ButtonTag 
+                    key={cat.name}
                     category={cat}
                     todoId={todo._id}
                     removeTag={this.props.removeTag} />)}

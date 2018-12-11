@@ -78,6 +78,7 @@ class DropDownHeader extends React.Component {
                 <div style={dropdownContent}  className="dropdown-content">
                     {dropDown.map((nameOfCategory, index) => 
                     <a tabIndex={0}
+                    key={nameOfCategory}
                     ref={(ref) => _Refs[index] = {ref:ref, focused:false} } 
                     onFocus={() => _Refs[index].focused=true}
                     onBlur={() => _Refs[index].focused=false}
